@@ -23,3 +23,21 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+# Symfony
+/.env
+/.env.local
+/.env.*.local
+/vendor/
+/var/
+/public/build/
+/node_modules/
+/coverage/
+/.phpunit.result.cache
+/.idea/
+/.vscode/
+/nbproject/
+/.cache/
+/docker/
+/*.log
+*.phpunit.result.cache
