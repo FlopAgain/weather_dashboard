@@ -1,0 +1,39 @@
+{# templates/weather/dashboard.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de Bord Météo{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Tableau de Bord Météo</h1>
+
+        {# Afficher les messages d'erreur #}
+        {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        {# Formulaire de recherche de ville #}
+        <form method="POST" action="{{ path('weather_dashboard') }}">
+            <div class="mb-3">
+                <label for="city" class="form-label">Entrez le nom d'une ville :</label>
+                <input type="text" class="form-control" id="city" name="city" placeholder="Exemple : Paris" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Rechercher</button>
+        </form>
+
+        {# Afficher les données météo si disponibles #}
+        {% if weatherData %}
+            <div class="mt-5">
+                <h2>Météo à {{ weatherData.name }}, {{ weatherData.sys.country }}</h2>
+                <p><strong>Température :</strong> {{ weatherData.main.temp }} °C</p>
+                <p><strong>Condition :</strong> {{ weatherData.weather[0].description | capitalize }}</p>
+                <p><strong>Humidité :</strong> {{ weatherData.main.humidity }} %</p>
+                <p><strong>Vent :</strong> {{ weatherData.wind.speed }} m/s</p>
+                <img src="https://openweathermap.org/img/wn/{{ weatherData.weather[0].icon }}@2x.png" alt="Icone Météo">
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
